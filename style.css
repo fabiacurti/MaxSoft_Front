@@ -1,0 +1,100 @@
+body {
+  background-image: url("img/fundobiblioteca.jpg");
+  background-color: #cccccc;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
+.flex-container-cabecalho {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.cabecalho {
+  color: white;
+  width: 500px;
+  margin: 10px auto;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  background: linear-gradient(rgba(8, 8, 8, 0.7), rgba(8, 8, 8, 0));
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.cabecalho::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 20px;
+  background: linear-gradient(rgba(8, 8, 8, 0), rgba(8, 8, 8, 0.7));
+}
+
+.pagina-conteudo {
+  display: flex;
+  margin-top: 60px;
+}
+
+.nav {
+  width: 450px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  justify-content: center;
+  margin-left: 10%;
+  height: 280px;
+  padding-top: 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  background: rgba(8, 8, 8, 0.7);
+  backdrop-filter: blur(3px);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.formulario {
+  color: white;
+  width: 80%;
+  line-height: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  background: rgba(8, 8, 8, 0.7);
+  backdrop-filter: blur(3px);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.divformulario {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.conteudo-extra {
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
+  background: rgba(8, 8, 8, 0.7);
+  backdrop-filter: blur(3px);
+  padding: 10px;
+  border-radius: 10px;
+  width: 80%;
+}
+
+.centralizar {
+  text-align: center;
+}
+.titulo{
+  font-size: 30px;
+  text-align: center;
+}
