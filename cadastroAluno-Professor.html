@@ -3,26 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Castro Aluno Professor</title>
+    <title>Cadastro Aluno e Professor</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        .form-label {
-            margin-bottom: 0;
-        }
-
-        .form-control {
-            margin-bottom: 15px;
-        }
-
-        .divformulario {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-    </style>
+       
 </head>
 
 <body>
@@ -54,9 +39,9 @@
             <div class="formulario">
                 <div class="titulo">Dados do Aluno/Professor</div>
                 <div class="divformulario">
-                    <form id="formCadastroAlunoProfessor" method="POST" action="#" class="row g-5 needs-validation"
+                    <form id="formCadastroAlunoProfessor" method="POST" action="#" class="row g-3 needs-validation"
                         novalidate>
-                        <div class="col-md-3" style="margin-right: 20px;">
+                        <div class="col-md-6">
                             <label for="nome" class="form-label">Nome:</label>
                             <input type="text" class="form-control rounded" id="nome" name="nome"
                                 placeholder="Digite o Nome" required>
@@ -64,7 +49,7 @@
                                 Por Favor, digite o Nome!
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label for="cpf" class="form-label">CPF:</label>
                             <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF"
                                 required>
@@ -72,7 +57,7 @@
                                 Por Favor, digite o CPF!
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-6">
                             <label for="dataNascimento" class="form-label">Data de Nascimento:</label>
                             <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
                                 placeholder="Digite a data de nascimento" required>
@@ -80,7 +65,7 @@
                                 Por favor, informe a data de nascimento!
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-6">
                             <label for="sala" class="form-label">Sala:</label>
                             <input type="text" class="form-control" id="sala" name="sala"
                                 placeholder="Digite a sala" required>
@@ -104,7 +89,7 @@
                                 Por favor, informe a cidade!
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <label for="rua" class="form-label">Rua:</label>
                             <input type="text" class="form-control" id="rua" name="rua"
                                 placeholder="Digite a rua" required>
@@ -129,7 +114,7 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label for="tipoPessoa" class="form-label">Tipo::</label>
+                            <label for="tipoPessoa" class="form-label">Tipo:</label>
                             <select class="form-select" id="tipoPessoa" name="tipoPessoa" required>
                                 <option selected disabled value="">Tipo..</option>
                                 <option value="Aluno">Aluno</option>
@@ -137,9 +122,9 @@
                             </select>
                         </div>
                         <div class="col-12 centralizar">
-                            <button class="btn btn-secondary" id='cadastrar' type="button">Cadastrar</button>
-                            <button class="btn btn-secondary" id='atualizar' type="button">Atualizar</button>
-                            <button class="btn btn-secondary" id='excluir' type="button">Excluir</button>
+                            <button class="btn btn-outline-success" id='cadastrar' type="button">Cadastrar</button>
+                            <button class="btn btn-outline-primary" id='atualizar' type="button">Atualizar</button>
+                            <button class="btn btn-outline-danger" id='excluir' type="button">Excluir</button>
                         </div>
                     </form>
                 </div>
