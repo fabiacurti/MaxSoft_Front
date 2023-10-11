@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const app = express();
+const path = require('path');
+const db = require(path.resolve(__dirname, './Infra/db'));
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -51,6 +54,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(5000, () => {
-  console.log('Servidor executando na porta 5000');
+app.listen(3000, () => {
+  console.log('Servidor executando na porta 3000');
 });
+

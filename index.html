@@ -1,58 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MaxSoft | Sistema de Gerenciamento para Biblioteca. </title>
-    <!-- Links para os recursos do Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Estilos personalizados -->
-    <style>
-        body {
-            background-image: url("/imagens/fundobiblioteca.jpg");
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tela de Login</title>
+  
+  <!-- Adicione links para o Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <!-- Adicione um link para a biblioteca Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" />
+  <style>
+    body {
+      background-image: url("https://img.cancaonova.com/cnimages/canais/uploads/sites/11/2022/07/livraria-livros-biblioteca-Foto-StockSnap-pixabay.jpg");
+      background-size: cover; 
+      background-repeat: no-repeat;
+      background-attachment: fixed; 
+    }
+    
+    .login-container {
+      max-width: 400px;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      color: white;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: rgba(0, 0, 0, 0.7); /* Cor preta com transparência */
+      margin-top: 100px;
+      border-radius: 5px;
+    }
 
-        .login-container {
-            max-width: 400px;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto;
-            color: white;
-            padding: 20px;
-            border: 1px solid #ddd;
-            background-color: #756a6a;
-            margin-top: 100px;
-            border-radius: 5px;
-        }
+    .form-group {
+      margin-bottom: 1rem;
+    }
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
-    </style>
+    .validation-icon {
+      position: absolute;
+      right: 10px;
+      top: calc(50% - 9px); /* Ajusta a posição verticalmente */
+    }
+
+    .validation-icon i {
+      font-size: 18px;
+    }
+
+    .validation-message {
+      font-size: 14px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .validation-message.error {
+      color: red;
+    }
+
+    .validation-message.success {
+      color: green;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <div class="login-container">
-            <h2 class="text-center">Login </h2>
-            <form method="POST" action="/login" class="needs-validation" novalidate>
-                <div class="form-group">
-                    <label for="username">Usuário:</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <button class="btn btn-primary" type="submit">Entrar</button>
-                <button class="btn btn-secondary" type="button" onclick="history.back()">Voltar</button>
-            </form>
+<body >
+  
+  <div class="container">
+    <div class="login-container">
+      <h2 class="text-center">Login</h2>
+      <form method="POST" class="needs-validation" novalidate>
+        <div class="form-group">
+          <label for="validationCustom01">Usuário:</label>
+          <div class="position-relative">
+            <input type="text" class="form-control" id="validationCustom01" name="usuario" value="" required />
+            <div class="validation-icon"></div>
+            <div class="validation-message"></div>
+          </div>
         </div>
+        <div class="form-group">
+          <label for="validationCustomUsername">Senha:</label>
+          <div class="position-relative">
+            <input type="password" class="form-control" id="validationCustomUsername" name="senha" required />
+            <div class="validation-icon"></div>
+            <div class="validation-message"></div>
+          </div>
+        </div>
+        <div class="text-center"> <!-- Adicione a classe text-center aqui -->
+          <button class="btn btn-info" type="submit">
+            Entrar
+          </button>
+          <button class="btn btn-outline-light" type="button" onclick="limparCampos()">Limpar</button>
+        </div>
+      </form>
     </div>
+  </div>
+
+  <!-- JS e o jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Adicione um link para a biblioteca Font Awesome para ícones -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"></script>
+
+  <script>
+    // Envio POST
+    (() => {
+      "use strict";
+
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      const forms = document.querySelectorAll(".needs-validation");
+
+      // Loop over them and prevent submission
+      Array.from(forms).forEach((form) => {
+        form.addEventListener(
+          "submit",
+          (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    })();
+
+    // Seleciona todos os campos de entrada
+    const inputFields = document.querySelectorAll('.form-control');
+
+    // Adiciona evento de foco para cada campo
+    inputFields.forEach((inputField) => {
+      const validationIcon = inputField.parentElement.querySelector('.validation-icon');
+      const validationMessage = inputField.parentElement.querySelector('.validation-message');
+
+      inputField.addEventListener('focus', () => {
+        inputField.style.borderColor = '';
+        validationIcon.innerHTML = '';
+        validationMessage.innerHTML = '';
+      });
+
+      inputField.addEventListener('blur', () => {
+        if (inputField.value === '') {
+          inputField.style.borderColor = 'red';
+          validationIcon.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+          validationMessage.classList.remove('success');
+          validationMessage.classList.add('error');
+          validationMessage.innerHTML = 'Preencha o campo !!!';
+        } else {
+          inputField.style.borderColor = 'green';
+          validationIcon.innerHTML = '<i class="fas fa-check-circle"></i>';
+          validationMessage.classList.remove('error');
+          validationMessage.classList.add('success');
+          validationMessage.innerHTML = 'Foi preenchido com sucesso !!!';
+        }
+      });
+    });
+
+    // Função para limpar campos
+    function limparCampos() {
+      inputFields.forEach((inputField) => {
+        inputField.value = ''; // Limpa o valor do campo
+        inputField.style.borderColor = ''; // Remove a borda vermelha ou verde
+        const validationIcon = inputField.parentElement.querySelector('.validation-icon');
+        validationIcon.innerHTML = ''; // Remove o ícone de validação
+        const validationMessage = inputField.parentElement.querySelector('.validation-message');
+        validationMessage.innerHTML = ''; // Remove a mensagem de validação
+      });
+    }
+  </script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
 </html>
