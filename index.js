@@ -5,7 +5,6 @@ const app = express();
 const path = require('path');
 const db = require(path.resolve(__dirname, './Infra/db'));
 
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
@@ -22,8 +21,10 @@ const verificaAutenticacao = (req, res, next) => {
   }
 };
 
+app.use(express.static(path.join(__dirname, 'View')));
+
 app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/login.html');
+  res.sendFile(path.join(__dirname, 'View', 'login.html'));
 });
 
 app.post('/login', (req, res) => {
@@ -39,22 +40,21 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/cadastroAluno.html', verificaAutenticacao, (req, res) => {
-  res.sendFile(__dirname + '/cadastroAluno.html');
+  res.sendFile(path.join(__dirname, 'View', 'cadastroAluno.html'));
 });
 
 app.get('/cadastroLivros.html', verificaAutenticacao, (req, res) => {
-  res.sendFile(__dirname + '/cadastroLivros.html');
+  res.sendFile(path.join(__dirname, 'View', 'cadastroLivros.html'));
 });
 
 app.get('/cadastroAluno-Professor.html', verificaAutenticacao, (req, res) => {
-  res.sendFile(__dirname + '/cadastroAluno-Professor.html');
+  res.sendFile(path.join(__dirname, 'View', 'cadastroAluno-Professor.html'));
 });
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(path.join(__dirname, 'View', 'index.html'));
 });
 
 app.listen(3000, () => {
   console.log('Servidor executando na porta 3000');
 });
-
