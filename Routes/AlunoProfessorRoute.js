@@ -1,16 +1,16 @@
 import express from 'express';
-import AlunoProfessorController from '../Controllers/AlunoProfessorController.js';
+import AlunoProfessorRoutes from './Routes/AlunoProfessorRoute.js';
 
-const alunoProfessorController = new AlunoProfessorController();
+const AlunoProfessorRoutes = new AlunoProfessorController();
 
 const router = express.Router();
 
-router.post('/alunoProfessor', alunoProfessorController.incluirAlunoProfessor);
+router.post('/alunoProfessor', AlunoProfessorRoutes.incluirAlunoProfessor);
 
-router.put('/alunoProfessor/:cpf', alunoProfessorController.atualizarAlunoProfessor);
+router.put('/alunoProfessor/:cpf', AlunoProfessorRoutes.atualizarAlunoProfessor);
 
-router.delete('/alunoProfessor/:cpf', alunoProfessorController.excluirAlunoProfessor);
+router.delete('/alunoProfessor/:cpf', AlunoProfessorRoutes.excluirAlunoProfessor);
 
-router.get('/alunoProfessor', alunoProfessorController.consultarAlunosProfessores);
+router.get('/alunoProfessor', AlunoProfessorRoutes.consultarAlunosProfessores);
 
 export default router;
