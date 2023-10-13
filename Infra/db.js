@@ -1,28 +1,25 @@
-const sql = require('mssql');
+import mysql from 'mysql2/promise';
 
-const config = {
-    user: 'DESKTOP-J2463JH\fabiacurti',
-    password: '',
-    server: 'DESKTOP-J2463JH\\SQLEXPRESS',
-    database: 'Maxsoft',
-    options: {
-        encrypt: false,
-        connectionTimeout: 30000,
-    },
-};
+export default async function conectar() {
+  if (global.conexao && global.conexao.status !== "disconnected") {
+    console.log("Reutilizando a conexão existente.");
+    return global.conexao;
+  }
 
-const pool = new sql.ConnectionPool(config);
-
-pool.connect()
-    .then(() => {
-        console.log('Conexão com o banco de dados estabelecida.');
-
-        // Consulta de exemplo
-        return pool.request().query('SELECT * FROM AlunosProfessores');
-    })
-    .then((result) => {
-        console.log('Resultados da consulta:', result.recordset);
-    })
-    .catch((err) => {
-        console.error('Erro ao conectar ao banco de dados:', err);
+  try {
+    const conexao = await mysql.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "",
+      database: "maxsoft"
     });
+
+    global.conexao = conexao;
+    console.log("Conexão bem-sucedida ao banco de dados.");
+
+    return conexao;
+  } catch (error) {
+    console.error("Erro ao conectar ao banco de dados:", error);
+    throw error;
+  }
+}

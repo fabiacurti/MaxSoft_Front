@@ -1,9 +1,22 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
+import AlunoProfessor from './Models/AlunoProfessor.js'
+
+let objAlunoProfessor = new AlunoProfessor(
+  'João Silva', '12345678901', '1990-05-15', 'Sala A', 'joao@example.com', 'São Paulo', 'Avenida Principal', '123', '12345678', 'Aluno'
+)
+
+objAlunoProfessor.gravar().then(() => {
+  console.log("O aluno/professor foi inserido com sucesso.")
+});import express from 'express';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import db from './Infra/db';
+
 const app = express();
-const path = require('path');
-const db = require(path.resolve(__dirname, './Infra/db'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
