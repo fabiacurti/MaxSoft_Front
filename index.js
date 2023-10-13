@@ -1,23 +1,14 @@
-import AlunoProfessor from './Models/AlunoProfessor.js'
-
-let objAlunoProfessor = new AlunoProfessor(
-  'João Silva', '12345678901', '1990-05-15', 'Sala A', 'joao@example.com', 'São Paulo', 'Avenida Principal', '123', '12345678', 'Aluno'
-)
-
-objAlunoProfessor.gravar().then(() => {
-  console.log("O aluno/professor foi inserido com sucesso.")
-});import express from 'express';
+import express from 'express';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import db from './Infra/db';
+import AlunoProfessorRoutes from './Routes/AlunoProfessorRoute.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
@@ -26,16 +17,10 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-const verificaAutenticacao = (req, res, next) => {
-  if (req.session.authenticated) {
-    next();
-  } else {
-    res.redirect('/login');
-  }
-};
+// Importe e use as rotas
 
-app.use(express.static(path.join(__dirname, 'View')));
-
+app.use('/api', AlunoProfessorRoutes);
+// Rota de login
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'View', 'login.html'));
 });
@@ -52,18 +37,7 @@ app.post('/login', (req, res) => {
   }
 });
 
-app.get('/cadastroAluno.html', verificaAutenticacao, (req, res) => {
-  res.sendFile(path.join(__dirname, 'View', 'cadastroAluno.html'));
-});
-
-app.get('/cadastroLivros.html', verificaAutenticacao, (req, res) => {
-  res.sendFile(path.join(__dirname, 'View', 'cadastroLivros.html'));
-});
-
-app.get('/cadastroAluno-Professor.html', verificaAutenticacao, (req, res) => {
-  res.sendFile(path.join(__dirname, 'View', 'cadastroAluno-Professor.html'));
-});
-
+// Rota raiz
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'View', 'index.html'));
 });
