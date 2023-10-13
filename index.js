@@ -17,7 +17,6 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-// Importe e use as rotas
 
 app.use('/api', AlunoProfessorRoutes);
 // Rota de login
