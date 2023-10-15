@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import AlunoProfessorRoutes from './Routes/AlunoProfessorRoute.js';
+import AlunoProfessorController from './Controllers/AlunoProfessorController.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -17,9 +18,10 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+const alunoProfessorController = new AlunoProfessorController();
 
-app.use('/api', AlunoProfessorRoutes);
-// Rota de login
+app.use('/api', AlunoProfessorRoutes(alunoProfessorController));
+
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'View', 'login.html'));
 });
@@ -36,7 +38,6 @@ app.post('/login', (req, res) => {
   }
 });
 
-// Rota raiz
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'View', 'index.html'));
 });

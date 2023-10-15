@@ -31,7 +31,7 @@ export default class AlunoProfessorBase{
 
     async consultar(termo) {
         const conexao = await conectar();
-        const sql = "SELECT * FROM AlunosProfessores WHERE Nome LIKE ? OR CPF LIKE ?"; 
+        const sql = "SELECT * FROM AlunosProfessores WHERE CPF LIKE ?"; 
         const valores = [`%${termo}%`, `%${termo}%`];
         const [alunosProfessores] = await conexao.query(sql, valores);
         return alunosProfessores;
